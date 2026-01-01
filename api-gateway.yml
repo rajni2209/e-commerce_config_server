@@ -19,4 +19,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          secret-key: my-super-secret-key
+          secret-key: my-super-secret-key-my-super-secret-key
