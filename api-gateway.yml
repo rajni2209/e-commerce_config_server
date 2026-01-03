@@ -1,23 +1,12 @@
 server:
   port: 8080
 
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
 spring:
   application:
-    name: api-gateway
+    name: api-gatway
 
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: false
-
       routes:
         - id: auth-service
           uri: lb://AUTH-SERVER
@@ -34,3 +23,8 @@ spring:
       resourceserver:
         jwt:
           secret-key: my-super-secret-key-my-super-secret-key
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
