@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
 
 eureka:
   client:
@@ -16,17 +16,16 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
-          lower-case-service-id: true
+          enabled: false
 
       routes:
         - id: auth-service
-          uri: lb://auth-service
+          uri: lb://AUTH-SERVER
           predicates:
             - Path=/auth/**
 
         - id: profile-service
-          uri: lb://profile-service
+          uri: lb://PROFILE-SERVICE
           predicates:
             - Path=/profile/**
 
