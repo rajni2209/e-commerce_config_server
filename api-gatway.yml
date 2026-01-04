@@ -17,6 +17,11 @@ spring:
           uri: lb://PROFILE-SERVICE
           predicates:
             - Path=/profile/**
+        
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product/**
 
   security:
     oauth2:
