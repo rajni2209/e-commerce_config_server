@@ -19,6 +19,11 @@ spring:
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/product/**
+            
+        - id: search-service
+          uri: lb://SEARCH-SERVICE
+          predicates:
+            - Path=/search/**
 
   security:
     oauth2:
