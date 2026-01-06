@@ -25,6 +25,7 @@ spring:
           predicates:
             - Path=/search/**
 
+# if needed u can remove this line but u need to update in the ide also - just for rember purpose
   security:
     oauth2:
       resourceserver:
