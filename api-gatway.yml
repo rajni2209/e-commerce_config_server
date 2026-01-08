@@ -24,6 +24,11 @@ spring:
           uri: lb://SEARCH-SERVICE
           predicates:
             - Path=/search/**
+            
+        - id: cart-service
+          uri: lb://cart-service
+          predicates:
+            - Path=/cart/**
 
 # if needed u can remove this line but u need to update in the ide also - just for rember purpose
   security:
