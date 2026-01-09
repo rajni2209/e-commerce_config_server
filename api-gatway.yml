@@ -30,6 +30,11 @@ spring:
           predicates:
             - Path=/cart/**
 
+        - id: inventory-service
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory/**
+
 # if needed u can remove this line but u need to update in the ide also - just for rember purpose
   security:
     oauth2:
