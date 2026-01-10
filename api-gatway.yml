@@ -40,6 +40,11 @@ spring:
           predicates:
             - Path=/order/**
 
+        - id: payment-server
+          uri: lb://PAYMENT-SERVER
+          predicates:
+            - Path=/payment/**
+
 # if needed u can remove this line but u need to update in the ide also - just for rember purpose
   security:
     oauth2:
