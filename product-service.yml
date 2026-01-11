@@ -28,8 +28,11 @@ spring:
   kafka:
     bootstrap-servers: 127.0.0.1:9092
     admin:
+      auto-create: true
       fail-fast: false
-      auto-create: false
+      properties:
+        request.timeout.ms: 60000
+        default.api.timeout.ms: 60000
     properties:
       client:
         dns:
