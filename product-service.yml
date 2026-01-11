@@ -1,5 +1,5 @@
 server:
-  port: 9092
+  port: 9097
 eureka:
   client:
     register-with-eureka: true
@@ -25,3 +25,8 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
