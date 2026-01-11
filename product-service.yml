@@ -28,7 +28,7 @@ spring:
   kafka:
     bootstrap-servers: 172.20.217.74:9092
     admin:
-      auto-create: false
+      auto-create: true
       fail-fast: false
       properties:
         request.timeout.ms: 60000
