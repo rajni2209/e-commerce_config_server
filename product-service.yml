@@ -29,7 +29,7 @@ spring:
     bootstrap-servers: 127.0.0.1:9092
     admin:
       fail-fast: false
-      auto-create: true
+      auto-create: false
     properties:
       client:
         dns:
