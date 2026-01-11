@@ -28,7 +28,12 @@ spring:
   kafka:
     bootstrap-servers: 127.0.0.1:9092
     admin:
+      fail-fast: false
       auto-create: true
+    properties:
+      client:
+        dns:
+          lookup: use_all_dns_ips
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
