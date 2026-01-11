@@ -26,7 +26,7 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: 127.0.0.1:9092
     admin:
       auto-create: true
     producer:
