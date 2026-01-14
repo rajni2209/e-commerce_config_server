@@ -40,8 +40,8 @@ spring:
           predicates:
             - Path=/order/**
 
-        - id: payment-server
-          uri: lb://PAYMENT-SERVER
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/payment/**
 
