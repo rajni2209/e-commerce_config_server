@@ -44,7 +44,7 @@ spring:
         spring.json.use.type.headers: false
 
         # map JSON to YOUR DTO
-        spring.json.value.default.type: com.ecommerce.paymentserver.event.OrderCreatedEvent
+        spring.json.value.default.type: com.ecommerce.paymentservice.event.OrderCreatedEvent
 
         # trusted packages (safe for internal systems)
-        spring.json.trusted.packages: com.ecommerce.paymentserver.event
+        spring.json.trusted.packages: com.ecommerce.paymentservice.event
