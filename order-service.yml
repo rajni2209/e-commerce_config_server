@@ -39,5 +39,4 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.use.type.headers: false
-        spring.json.value.default.type: com.ecommerce.orderservice.events.InventoryReservedEvent
         spring.json.trusted.packages: com.ecommerce.orderservice.events
