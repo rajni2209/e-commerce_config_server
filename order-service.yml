@@ -38,5 +38,5 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.use.type.headers: false
+        spring.json.use.type.headers: true
         spring.json.trusted.packages: com.ecommerce.orderservice.events
