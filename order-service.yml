@@ -27,6 +27,7 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
   kafka:
     bootstrap-servers: localhost:9092
+
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -38,7 +39,8 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      spring.json.use.type.headers: true
+      properties:
+        spring.json.use.type.headers: true
         spring.json.trusted.packages: com.ecommerce.orderservice.events
         spring.json.type.mapping: >
           com.ecommerce.inventoryservice.event.InventoryFailedEvent:
@@ -47,4 +49,3 @@ spring:
           com.ecommerce.orderservice.events.InventoryReservedEvent,
           com.ecommerce.paymentservice.event.PaymentCompletedEvent:
           com.ecommerce.orderservice.events.PaymentCompletedEvent
-          
