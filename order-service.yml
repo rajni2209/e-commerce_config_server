@@ -40,4 +40,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.use.type.headers: true
-        spring.json.trusted.packages: com.ecommerce.orderservice.events
+        spring.json.trusted.packages: >
+          com.ecommerce.orderservice.events,
+          com.ecommerce.inventoryservice.event,
+          com.ecommerce.paymentservice.event
