@@ -38,7 +38,13 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.use.type.headers: false
-        spring.json.trusted.packages: com.ecommerce.orderservice.events,
+      spring.json.use.type.headers: true
+        spring.json.trusted.packages: com.ecommerce.orderservice.events
+        spring.json.type.mapping: >
+          com.ecommerce.inventoryservice.event.InventoryFailedEvent:
+          com.ecommerce.orderservice.events.InventoryFailedEvent,
+          com.ecommerce.inventoryservice.event.InventoryReservedEvent:
+          com.ecommerce.orderservice.events.InventoryReservedEvent,
+          com.ecommerce.paymentservice.event.PaymentCompletedEvent:
+          com.ecommerce.orderservice.events.PaymentCompletedEvent
           
