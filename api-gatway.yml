@@ -64,6 +64,10 @@ spring:
       resourceserver:
         jwt:
           secret-key: my-super-secret-key-my-super-secret-key
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 eureka:
   client:
