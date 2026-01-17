@@ -58,7 +58,7 @@ spring:
           predicates:
             - Path=/payment/**
 
-# if needed u can remove this line but u need to update in the ide also - just for rember purpose
+# just for rember purpose(removeable)
   security:
     oauth2:
       resourceserver:
