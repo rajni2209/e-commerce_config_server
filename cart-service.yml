@@ -16,6 +16,13 @@ spring:
     redis:
       host: localhost
       port: 6379
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 2000
+            read-timeout: 2000
 
   kafka:
     bootstrap-servers: localhost:9092
