@@ -34,11 +34,12 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.add.type.headers: true
-    acks: all
+      acks: all
       retries: 2147483647
-      enable-idempotence: true
-      max-in-flight-requests-per-connection: 5
+      properties:
+        enable-idempotence: true
+        max-in-flight-requests-per-connection: 5
+        spring.json.add.type.headers: true
 
     consumer:
       group-id: payment-service-group
