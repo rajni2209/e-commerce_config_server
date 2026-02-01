@@ -1,17 +1,10 @@
 server:
   port: 9098
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    prefer-ip-address: true
-    ip-address: 127.0.0.1
-
 spring:
+  application:
+    name: payment-service
+
   datasource:
     url: jdbc:mysql://localhost:3306/e_commerce_paymentservice?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
@@ -33,7 +26,6 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
       acks: all
       retries: 2147483647
       properties:
@@ -52,3 +44,13 @@ spring:
         spring.json.type.mapping: >
           com.ecommerce.orderservice.events.OrderCreatedEvent:
           com.ecommerce.paymentservice.event.OrderCreatedEvent
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
