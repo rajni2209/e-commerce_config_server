@@ -14,93 +14,181 @@ spring:
 
       routes:
 
+        # =============================
+        # AUTH SERVICE
+        # =============================
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
             - Path=/auth/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 5
                 key-resolver: "#{@smartKeyResolver}"
 
+        - id: auth-docs
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/v3/api-docs
+          filters:
+            - StripPrefix=1
+
+        # =============================
+        # PROFILE SERVICE
+        # =============================
         - id: profile-service
           uri: lb://PROFILE-SERVICE
           predicates:
             - Path=/profile/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 10
                 redis-rate-limiter.burstCapacity: 20
                 key-resolver: "#{@smartKeyResolver}"
 
+        - id: profile-docs
+          uri: lb://PROFILE-SERVICE
+          predicates:
+            - Path=/profile/v3/api-docs
+          filters:
+            - StripPrefix=1
+
+        # =============================
+        # PRODUCT SERVICE
+        # =============================
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/product/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 15
                 redis-rate-limiter.burstCapacity: 30
                 key-resolver: "#{@smartKeyResolver}"
 
+        - id: product-docs
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product/v3/api-docs
+          filters:
+            - StripPrefix=1
+
+        # =============================
+        # SEARCH SERVICE
+        # =============================
         - id: search-service
           uri: lb://SEARCH-SERVICE
           predicates:
             - Path=/search/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 20
                 redis-rate-limiter.burstCapacity: 40
                 key-resolver: "#{@smartKeyResolver}"
 
+        - id: search-docs
+          uri: lb://SEARCH-SERVICE
+          predicates:
+            - Path=/search/v3/api-docs
+          filters:
+            - StripPrefix=1
+
+        # =============================
+        # CART SERVICE
+        # =============================
         - id: cart-service
           uri: lb://CART-SERVICE
           predicates:
             - Path=/cart/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 8
                 redis-rate-limiter.burstCapacity: 15
                 key-resolver: "#{@smartKeyResolver}"
 
+        - id: cart-docs
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=/cart/v3/api-docs
+          filters:
+            - StripPrefix=1
+
+        # =============================
+        # INVENTORY SERVICE
+        # =============================
         - id: inventory-service
           uri: lb://INVENTORY-SERVICE
           predicates:
             - Path=/inventory/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5
                 redis-rate-limiter.burstCapacity: 10
                 key-resolver: "#{@smartKeyResolver}"
 
+        - id: inventory-docs
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory/v3/api-docs
+          filters:
+            - StripPrefix=1
+
+        # =============================
+        # ORDER SERVICE
+        # =============================
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5
                 redis-rate-limiter.burstCapacity: 10
                 key-resolver: "#{@smartKeyResolver}"
 
+        - id: order-docs
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order/v3/api-docs
+          filters:
+            - StripPrefix=1
+
+        # =============================
+        # PAYMENT SERVICE
+        # =============================
         - id: payment-service
           uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/payment/**
           filters:
+            - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 3
                 redis-rate-limiter.burstCapacity: 6
                 key-resolver: "#{@smartKeyResolver}"
+
+        - id: payment-docs
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/v3/api-docs
+          filters:
+            - StripPrefix=1
 
   data:
     redis:
@@ -119,7 +207,30 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     prefer-ip-address: true
-    ip-address: 127.0.0.1
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    urls:
+      - name: auth-service
+        url: /auth/v3/api-docs
+      - name: profile-service
+        url: /profile/v3/api-docs
+      - name: product-service
+        url: /product/v3/api-docs
+      - name: search-service
+        url: /search/v3/api-docs
+      - name: cart-service
+        url: /cart/v3/api-docs
+      - name: inventory-service
+        url: /inventory/v3/api-docs
+      - name: order-service
+        url: /order/v3/api-docs
+      - name: payment-service
+        url: /payment/v3/api-docs
 
 logging:
   level:
