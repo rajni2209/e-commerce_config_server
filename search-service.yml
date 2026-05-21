@@ -1,27 +1,82 @@
+# server:
+#   port: 9099
+# eureka:
+#   client:
+#     register-with-eureka: true
+#     fetch-registry: true
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka
+#   instance:
+#     prefer-ip-address: true
+#     ip-address: 127.0.0.1
+# spring:
+#   elasticsearch:
+#     uris: http://localhost:9200
+    
+#   kafka:
+#     bootstrap-servers: localhost:9092
+#     consumer:
+#       group-id: search-service-groups
+#       auto-offset-reset: earliest
+#       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#       properties:
+#         spring.json.trusted.packages: "*"
+#         spring.json.use.type.headers: false
+#         spring.json.value.default.type: com.ecommerce.searchservice.DTO.ProductCreatedEvent
+
 server:
   port: 9099
+
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
   instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1
+
 spring:
+
+  datasource:
+    url: jdbc:mariadb://localhost:3307/search_db
+    username: root
+    password: rajni
+
   elasticsearch:
     uris: http://localhost:9200
-    
+
   kafka:
     bootstrap-servers: localhost:9092
+
     consumer:
       group-id: search-service-groups
       auto-offset-reset: earliest
+
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
       properties:
         spring.json.trusted.packages: "*"
         spring.json.use.type.headers: false
         spring.json.value.default.type: com.ecommerce.searchservice.DTO.ProductCreatedEvent
-       
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.2:3b
+      embedding:
+        options:
+          model: nomic-embed-text
+
+    vectorstore:
+      mariadb:
+        initialize-schema: true
+        distance-type: COSINE
+        dimensions: 768
