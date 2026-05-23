@@ -39,15 +39,15 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
-        # spring.json.use.type.headers: true
+        spring.json.use.type.headers: true
         spring.json.trusted.packages: com.ecommerce.orderservice.events
-        # spring.json.type.mapping: >
-          # com.ecommerce.inventoryservice.event.InventoryReservedEvent:
-          # com.ecommerce.orderservice.events.InventoryReservedEvent,
-          # com.ecommerce.inventoryservice.event.InventoryFailedEvent:
-          # com.ecommerce.orderservice.events.InventoryFailedEvent,
-          # com.ecommerce.paymentservice.event.PaymentCompletedEvent:
-          # com.ecommerce.orderservice.events.PaymentCompletedEvent
+        spring.json.type.mapping: >
+          com.ecommerce.inventoryservice.event.InventoryReservedEvent:
+          com.ecommerce.orderservice.events.InventoryReservedEvent,
+          com.ecommerce.inventoryservice.event.InventoryFailedEvent:
+          com.ecommerce.orderservice.events.InventoryFailedEvent,
+          com.ecommerce.paymentservice.event.PaymentCompletedEvent:
+          com.ecommerce.orderservice.events.PaymentCompletedEvent
 
 eureka:
   client:
