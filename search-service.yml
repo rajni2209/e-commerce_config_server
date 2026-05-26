@@ -69,7 +69,7 @@ spring:
     mcp:
       server:
         enabled: true
-        protocol: SSE
+        protocol: STREAMABLE
         
         name: ecommerce-search-mcp
         version: 1.0.0
@@ -81,3 +81,6 @@ spring:
           resource: false
           prompt: false
           completion: false
+          
+        streamable-http:
+          mcp-endpoint: /mcp
