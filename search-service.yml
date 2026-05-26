@@ -66,14 +66,10 @@ spring:
         spring.json.value.default.type: com.ecommerce.searchservice.DTO.ProductCreatedEvent
 
   ai:
-    ollama:
-      base-url: http://localhost:11434
-      chat:
-        options:
-          model: llama3.2:3b
-      embedding:
-        options:
-          model: nomic-embed-text
+    mcp:
+      server:
+        name: ecommerce-search-mcp
+        version: 1.0.0
 
     vectorstore:
       mariadb:
