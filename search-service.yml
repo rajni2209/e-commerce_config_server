@@ -69,7 +69,7 @@ spring:
     mcp:
       server:
         enabled: true
-        protocol: STREAMABLE
+        protocol: SSE
         
         name: ecommerce-search-mcp
         version: 1.0.0
@@ -81,12 +81,3 @@ spring:
           resource: false
           prompt: false
           completion: false
-
-        streamable-http:
-          mcp-endpoint: /mcp
-
-    vectorstore:
-      mariadb:
-        initialize-schema: true
-        distance-type: COSINE
-        dimensions: 768
