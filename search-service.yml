@@ -68,6 +68,9 @@ spring:
   ai:
     mcp:
       server:
+        enabled: true
+        protocol: STREAMABLE
+        
         name: ecommerce-search-mcp
         version: 1.0.0
         type: SYNC
