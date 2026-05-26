@@ -70,6 +70,17 @@ spring:
       server:
         name: ecommerce-search-mcp
         version: 1.0.0
+        type: SYNC
+        request-timeout: 30s
+
+        capabilities:
+          tool: true
+          resource: false
+          prompt: false
+          completion: false
+
+        streamable-http:
+          mcp-endpoint: /mcp
 
     vectorstore:
       mariadb:
