@@ -47,7 +47,7 @@ spring:
       mariadb:
         initialize-schema: true
         distance-type: COSINE
-        dimensions: 1536
+        dimensions: 768
 
   kafka:
     bootstrap-servers: localhost:9092
