@@ -12,6 +12,11 @@ eureka:
     ip-address: 127.0.0.1
 
 spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3307/search_db
+    username: rool
+    password: rajni
+
   ai:
     chat:
       client:
@@ -35,6 +40,12 @@ spring:
 
     retry:
       max-attempts: 1
+
+    vectorstore:
+      mariadb:
+        initialize-schema: true
+        distance-type: COSINE
+        dimensions: 1536
 
   kafka:
     bootstrap-servers: localhost:9092
