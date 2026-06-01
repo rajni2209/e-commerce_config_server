@@ -169,6 +169,25 @@ spring:
               predicates:
                 - Path=/payment/v3/api-docs
 
+            # =============================
+            # AI SERVICE
+            # =============================
+            - id: ai-service
+              uri: lb://AI-SERVICE
+              predicates:
+                - Path=/ai/**
+              filters:
+                - name: RequestRateLimiter
+                  args:
+                    redis-rate-limiter.replenishRate: 10
+                    redis-rate-limiter.burstCapacity: 20
+                    key-resolver: "#{@smartKeyResolver}"
+
+            - id: ai-docs
+              uri: lb://AI-SERVICE
+              predicates:
+                - Path=/ai/v3/api-docs
+
   data:
     redis:
       host: localhost
@@ -214,6 +233,9 @@ springdoc:
 
       - name: payment-service
         url: /payment/v3/api-docs
+
+      - name: ai-service
+        url: /ai/v3/api-docs
 
 logging:
   level:
