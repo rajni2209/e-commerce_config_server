@@ -4,19 +4,19 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
     register-with-eureka: true
     fetch-registry: true
 
   instance:
     prefer-ip-address: true
-    ip-address: 127.0.0.1
 
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3307/ai_service
-    username: root
-    password: rajni
+    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:3307}/ai_service
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:rajni}
 
   ai:
     chat:
@@ -26,18 +26,22 @@ spring:
     mcp:
       client:
         name: search-client
+
         streamable-http:
           connections:
             search-service:
-              url: http://127.0.0.1:9099
+              url: ${SEARCH_SERVICE_URL:http://localhost:9099}
               endpoint: /mcp
 
     ollama:
-      base-url: http://localhost:11434
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+
       chat:
         model: llama3.2:3b
+
       embedding:
         model: nomic-embed-text
+
       init:
         timeout: 5m
 
@@ -51,13 +55,14 @@ spring:
         dimensions: 768
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
     consumer:
       group-id: ai-service-groups
       auto-offset-reset: earliest
 
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
       properties:
