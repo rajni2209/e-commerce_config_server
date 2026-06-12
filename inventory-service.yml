@@ -6,28 +6,31 @@ spring:
     name: inventory-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/e_commerce_inventoryservice?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: rajni
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/e_commerce_inventoryservice?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:rajni}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
+
     show-sql: true
+
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: all
       retries: 2147483647
+
       properties:
         enable-idempotence: true
         max-in-flight-requests-per-connection: 5
@@ -36,8 +39,10 @@ spring:
     consumer:
       group-id: inventory-service-group
       auto-offset-reset: earliest
+
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
       properties:
         spring.json.use.type.headers: true
         spring.json.trusted.packages: com.ecommerce.inventoryservice.event
@@ -51,8 +56,9 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
   instance:
     prefer-ip-address: true
-    ip-address: 127.0.0.1
