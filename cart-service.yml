@@ -6,16 +6,17 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
   instance:
     prefer-ip-address: true
-    ip-address: 127.0.0.1
 
 spring:
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
   cloud:
     openfeign:
       client:
@@ -25,22 +26,26 @@ spring:
             read-timeout: 2000
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
       properties:
         spring.json.add.type.headers: true
 
     consumer:
       group-id: cart-service-group
       auto-offset-reset: earliest
+
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
       properties:
         spring.json.use.type.headers: true
         spring.json.trusted.packages: com.ecommerce.cartservice.event
+
         spring.json.type.mapping: >
           com.ecommerce.orderservice.events.OrderConfirmedEvent:
           com.ecommerce.cartservice.event.OrderConfirmedEvent
@@ -51,11 +56,10 @@ resilience4j:
       productService:
         sliding-window-size: 10
         failure-rate-threshold: 50
-        wait-duration-in-open-state:
-          10s
+        wait-duration-in-open-state: 10s
+
   retry:
     instances:
       productService:
         max-attempts: 2
-        wait-duration:
-          2s
+        wait-duration: 2s
